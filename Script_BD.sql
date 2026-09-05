@@ -28,11 +28,20 @@ identificador VARCHAR(50),
 FOREIGN KEY (fk_empresa) REFERENCES empresa (id_empresa)
 );
 
+CREATE TABLE parametro(
+id_parametro INT PRIMARY KEY AUTO_INCREMENT,
+parametro VARCHAR(50),
+unidade VARCHAR(50),
+max INT,
+min INT
+);
+
 CREATE TABLE componente(
 id_componente INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(50),
-tipo VARCHAR(50),
-unidade VARCHAR(50)
+fk_parametro INT,
+
+FOREIGN KEY (fk_parametro) REFERENCES parametro(id_parametro)
 );
 
 CREATE TABLE componente_instancia(
@@ -48,7 +57,8 @@ FOREIGN KEY (fk_instancia) REFERENCES instancia(id_instancia)
 
 CREATE TABLE cargo(
 id_cargo INT PRIMARY KEY AUTO_INCREMENT,
-nome_cargo VARCHAR(45)
+nome_cargo VARCHAR(45),
+nivel VARCHAR(45)
 );
 
 CREATE TABLE usuario(
