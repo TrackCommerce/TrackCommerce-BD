@@ -101,25 +101,7 @@ INSERT INTO componente(nome, opcao_monitorar)VALUES
 ("Disco", "Quantidade de GB livre"),
 ("RAM", "Porcentagem de Uso"),
 ("RAM", "Quantidade de GB livre"),
-("Rede", "Monitorar Latência da Rede");
-
-
-select * from instancia;
-
-
-select * from componente_instancia;
-
-
-
-SELECT 
-    a.nome,
-a.identificador,
-a.id_instancia,
-GROUP_CONCAT(DISTINCT c.nome SEPARATOR ', ') AS grupoComponentes,
-GROUP_CONCAT(DISTINCT CONCAT(c.id_componente, ':',  ci.parametro) SEPARATOR', ') AS grupoOpcoesComponentes
-FROM instancia a
-JOIN componente_instancia ci ON ci.fk_instancia = a.id_instancia
-JOIN componente c ON c.id_componente = ci.fk_componente
-WHERE a.fk_empresa = 1
-GROUP BY a.id_instancia, a.nome;	
+("Rede", "Latência da Rede"),
+("Rede", "Download da Rede"),
+("Rede", "Upload da Rede");
 
