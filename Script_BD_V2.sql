@@ -218,3 +218,20 @@ INSERT INTO Evento (fk_leitura, fk_criticidade, data_hora, descricao, chamado_ji
 (2, 3, '2026-09-18 08:05:00', 'Uso de CPU acima do limite configurado na VM de producao web', 'TRACK-101', 'aberto'),
 (5, 2, '2026-09-18 09:00:00', 'Uso de CPU acima do limite configurado na VM de producao web (MercadoRapido)', 'TRACK-102', 'em_andamento'),
 (6, 4, '2026-09-18 09:10:00', 'Latencia da API de pagamento acima do limite critico', 'TRACK-103', 'aberto');
+
+
+SET SQL_SAFE_UPDATES = 0;
+
+DELETE FROM Usuario;
+ALTER TABLE Usuario AUTO_INCREMENT = 1;
+
+INSERT INTO Usuario (nome, email, senha, celular, fk_empresa, fk_cargo) VALUES
+('Bruno Alcantara', 'bruno.alcantara@lojacerta.com', 'senha123', '11991112222', 1, 1),
+('Camila Duarte', 'camila.duarte@lojacerta.com', 'senha123', '11992223333', 1, 2),
+('Diego Ferraz', 'diego.ferraz@mercadorapido.com', 'senha123', '19993334444', 2, 1),
+('Fernanda Souza', 'fernanda.souza@mercadorapido.com', 'senha123', '19994445555', 2, 3),
+('Gabriel Teixeira', 'gabriel.teixeira@boracomprar.com', 'senha123', '21995556666', 3, 1),
+('Helena Vasconcelos', 'helena.vasconcelos@boracomprar.com', 'senha123', '21996667777', 3, 2);
+
+SET SQL_SAFE_UPDATES = 1;
+
