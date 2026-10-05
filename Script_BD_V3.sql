@@ -145,6 +145,7 @@ CREATE TABLE IF NOT EXISTS `TrackCommerce`.`Instancias` (
   `id_instancia` INT NOT NULL AUTO_INCREMENT,
   `fk_empresa` INT NOT NULL,
   `nome` VARCHAR(50) NOT NULL,
+  `descricao` VARCHAR(200),
   `identificador` VARCHAR(500) NOT NULL,
   `ativo` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_instancia`),
