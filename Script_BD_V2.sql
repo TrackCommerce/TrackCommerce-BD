@@ -63,6 +63,7 @@ CREATE TABLE Instancias (
   id_instancia INT AUTO_INCREMENT PRIMARY KEY,
   fk_empresa INT NOT NULL,
   nome VARCHAR(50) NOT NULL,
+  descricao VARCHAR(100),
   identificador VARCHAR(50) NOT NULL,
   CONSTRAINT uq_instancia_identificador UNIQUE (identificador),
   CONSTRAINT fk_instancia_empresa
