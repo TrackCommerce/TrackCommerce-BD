@@ -136,6 +136,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `id_empresa` INT NOT NULL AUTO_INCREMENT,
   `razao_social` VARCHAR(100) NOT NULL,
   `cnpj` CHAR(14) NOT NULL,
+  `token_instalacao` CHAR(64) NULL DEFAULT NULL,
   `fk_endereco` INT NULL DEFAULT NULL,
 
   PRIMARY KEY (`id_empresa`),
@@ -152,6 +153,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 CREATE UNIQUE INDEX `uq_empresa_cnpj`
 ON `empresa` (`cnpj` ASC);
+
+CREATE UNIQUE INDEX `uq_empresa_token_instalacao`
+ON `empresa` (`token_instalacao` ASC);
 
 CREATE INDEX `fk_empresa_endereco`
 ON `empresa` (`fk_endereco` ASC);
