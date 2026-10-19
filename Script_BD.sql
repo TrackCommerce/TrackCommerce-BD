@@ -406,7 +406,8 @@ INSERT INTO `TrackCommerce`.`empresa`
 VALUES
 (1, 'LojaCerta Comercio Eletronico LTDA', '12345678000190', 1),
 (2, 'Mercado Rapido E-commerce S.A.', '98765432000110', 2),
-(3, 'BoraComprar Varejo Digital LTDA', '11222333000144', 3);
+(3, 'BoraComprar Varejo Digital LTDA', '11222333000144', 3)
+(4, 'TrackCommerce', '11222333006767', null);
 
 
 -- -----------------------------------------------------
@@ -467,7 +468,8 @@ VALUES
 (3, 'Diego Ferraz', 'diego.ferraz@mercadorapido.com', 'senha123', '19993334444', 2, 1),
 (4, 'Fernanda Souza', 'fernanda.souza@mercadorapido.com', 'senha123', '19994445555', 2, 3),
 (5, 'Gabriel Teixeira', 'gabriel.teixeira@boracomprar.com', 'senha123', '21995556666', 3, 1),
-(6, 'Helena Vasconcelos', 'helena.vasconcelos@boracomprar.com', 'senha123', '21996667777', 3, 2);
+(6, 'Helena Vasconcelos', 'helena.vasconcelos@boracomprar.com', 'senha123', '21996667777', 3, 2)
+(7, 'Rodrigo Yumi', 'rodrigo.yumi@TrackCommerce.com', 'senha123', '21996667799', 4, 1);
 
 
 -- -----------------------------------------------------
