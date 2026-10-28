@@ -92,7 +92,6 @@ CREATE TABLE `integracao` (
   `jira_url` VARCHAR(200) NULL DEFAULT NULL,
   `jira_email` VARCHAR(200) NULL DEFAULT NULL,
   `jira_project_key` VARCHAR(200) NULL DEFAULT NULL,
-  `slack_webhook` VARCHAR(200) NULL DEFAULT NULL,
   PRIMARY KEY (`id_integracao`),
   UNIQUE INDEX `uq_integracao_empresa` (`fk_empresa`),
   CONSTRAINT `fk_integracao_empresa` FOREIGN KEY (`fk_empresa`) REFERENCES `empresa` (`id_empresa`) ON DELETE CASCADE
@@ -159,7 +158,7 @@ INSERT INTO `empresa` (`id_empresa`, `razao_social`, `cnpj`, `fk_endereco`) VALU
 (4, 'BoraComprar Varejo Digital LTDA', '11222333000144', 3);
 
 INSERT INTO `cargo` (`id_cargo`, `nome_cargo`, `nivel`) VALUES
-(1, 'Administrador', 'Alto'),
+(1, 'Gestor', 'Alto'),
 (2, 'Analista de Infraestrutura', 'Medio'),
 (3, 'Suporte Tecnico', 'Baixo');
 
