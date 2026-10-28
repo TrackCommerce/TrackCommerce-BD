@@ -230,8 +230,7 @@ SELECT ic.id_instancia_componente,
        ig.jira_url,
        ig.jira_email,
        ig.codigo_api,
-       ig.jira_project_key,
-       ig.slack_webhook
+       ig.jira_project_key
 FROM instancia_componente ic
 JOIN instancia i       ON i.id_instancia = ic.fk_instancia
 JOIN empresa e         ON e.id_empresa = i.fk_empresa
