@@ -175,7 +175,7 @@ INSERT INTO `cargo_permissao` (`fk_cargo`, `fk_permissao`) VALUES
 (3, 3), (3, 4);
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `celular`, `fk_empresa`, `fk_cargo`) VALUES
-(1, 'Dev TrackCommerce', 'dev@trackcommerce.com', '2178706529846735', NULL, 1, 1),
+(1, 'Enzo Martelozzo', 'enzo.martelozzo@sptech.school', '2178706529846735', NULL, 1, 1),
 (2, 'Geraldo Alcantra', 'geraldo.alcantara@lojacerta.com', '2178706529846735', '11991112222', 2, 1),
 (3, 'Luciana Duarte', 'luciana.duarte@lojacerta.com', '2178706529846735', '11992223333', 2, 2),
 (4, 'Diego Ferraz', 'diego.ferraz@mercadorapido.com', '2178706529846735', '19993334444', 3, 1),
