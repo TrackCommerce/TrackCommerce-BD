@@ -175,13 +175,13 @@ INSERT INTO `cargo_permissao` (`fk_cargo`, `fk_permissao`) VALUES
 (3, 3), (3, 4);
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `celular`, `fk_empresa`, `fk_cargo`) VALUES
-(1, 'Dev TrackCommerce', 'dev@trackcommerce.com', 'senha123', NULL, 1, 1),
-(2, 'Bruno Alcantara', 'bruno.alcantara@lojacerta.com', 'senha123', '11991112222', 2, 1),
-(3, 'Camila Duarte', 'camila.duarte@lojacerta.com', 'senha123', '11992223333', 2, 2),
-(4, 'Diego Ferraz', 'diego.ferraz@mercadorapido.com', 'senha123', '19993334444', 3, 1),
-(5, 'Fernanda Souza', 'fernanda.souza@mercadorapido.com', 'senha123', '19994445555', 3, 3),
-(6, 'Gabriel Teixeira', 'gabriel.teixeira@boracomprar.com', 'senha123', '21995556666', 4, 1),
-(7, 'Helena Vasconcelos', 'helena.vasconcelos@boracomprar.com', 'senha123', '21996667777', 4, 2);
+(1, 'Dev TrackCommerce', 'dev@trackcommerce.com', '2178706529846735', NULL, 1, 1),
+(2, 'Geraldo Alcantra', 'geraldo.alcantara@lojacerta.com', '2178706529846735', '11991112222', 2, 1),
+(3, 'Luciana Duarte', 'luciana.duarte@lojacerta.com', '2178706529846735', '11992223333', 2, 2),
+(4, 'Diego Ferraz', 'diego.ferraz@mercadorapido.com', '2178706529846735', '19993334444', 3, 1),
+(5, 'Fernanda Souza', 'fernanda.souza@mercadorapido.com', '2178706529846735', '19994445555', 3, 3),
+(6, 'Gabriel Teixeira', 'gabriel.teixeira@boracomprar.com', '2178706529846735', '21995556666', 4, 1),
+(7, 'Helena Vasconcelos', 'helena.vasconcelos@boracomprar.com', '2178706529846735', '21996667777', 4, 2);
 
 INSERT INTO `integracao` (`id_integracao`, `codigo_api`,`jira_email`, `fk_empresa`, `jira_url`, `jira_project_key`) VALUES
 (1, 'JIRA-API-KEY-LOJACERTA-89213','enzo.martelozzo@sptech.school' ,2, 'https://trackcommerce.atlassian.net', 'NOV'),
