@@ -183,10 +183,10 @@ INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `celular`, `fk_em
 (6, 'Gabriel Teixeira', 'gabriel.teixeira@boracomprar.com', 'senha123', '21995556666', 4, 1),
 (7, 'Helena Vasconcelos', 'helena.vasconcelos@boracomprar.com', 'senha123', '21996667777', 4, 2);
 
-INSERT INTO `integracao` (`id_integracao`, `codigo_api`, `fk_empresa`) VALUES
-(1, 'JIRA-API-KEY-LOJACERTA-89213', 2),
-(2, 'JIRA-API-KEY-MERCADORAPIDO-44123', 3),
-(3, 'JIRA-API-KEY-BORACOMPRAR-77211', 4);
+INSERT INTO `integracao` (`id_integracao`, `codigo_api`,`jira_email`, `fk_empresa`, `jira_url`, `jira_project_key`) VALUES
+(1, 'JIRA-API-KEY-LOJACERTA-89213','enzo.martelozzo@sptech.school' ,2, 'https://trackcommerce.atlassian.net', 'NOV'),
+(2, 'JIRA-API-KEY-MERCADORAPIDO-44123','enzo.martelozzo@sptech.school', 3, 'https://trackcommerce.atlassian.net', 'NOV'),
+(3, 'JIRA-API-KEY-BORACOMPRAR-77211','enzo.martelozzo@sptech.school', 4, 'https://trackcommerce.atlassian.net', 'NOV');
 
 INSERT INTO `instancia` (`id_instancia`, `fk_empresa`, `nome`, `identificador`, `ativo`) VALUES
 (1, 2, 'VM Producao Web', 'ef7050f0-9d76-49ff-ae93-a7b5581ff629', 1),
