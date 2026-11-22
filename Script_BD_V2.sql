@@ -65,6 +65,8 @@ CREATE TABLE Instancias (
   nome VARCHAR(50) NOT NULL,
   descricao VARCHAR(100),
   identificador VARCHAR(50) NOT NULL,
+  -- valor medio por requisicao 'Established' (USD por connection-minute); coluna simples para override atual
+  valor_por_established DECIMAL(18,8) NULL DEFAULT NULL,
   CONSTRAINT uq_instancia_identificador UNIQUE (identificador),
   CONSTRAINT fk_instancia_empresa
     FOREIGN KEY (fk_empresa) REFERENCES Empresa (id_empresa) ON DELETE CASCADE
@@ -235,4 +237,3 @@ INSERT INTO Usuario (nome, email, senha, celular, fk_empresa, fk_cargo) VALUES
 ('Helena Vasconcelos', 'helena.vasconcelos@boracomprar.com', 'senha123', '21996667777', 3, 2);
 
 SET SQL_SAFE_UPDATES = 1;
-
