@@ -106,11 +106,15 @@ CREATE TABLE `instancia` (
   `nome` VARCHAR(50) NOT NULL,
   `descricao` VARCHAR(200) NULL DEFAULT NULL,
   `identificador` VARCHAR(255) NOT NULL,
+  `valor_por_established` DECIMAL(18,8) NOT NULL DEFAULT 0.001,
   `ativo` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_instancia`),
   UNIQUE INDEX `uq_instancia_identificador` (`identificador`),
   CONSTRAINT `fk_instancia_empresa` FOREIGN KEY (`fk_empresa`) REFERENCES `empresa` (`id_empresa`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
+
+-- Índice composto para buscas por empresa e status
+CREATE INDEX idx_instancia_empresa_ativo ON `instancia` (fk_empresa, ativo);
 
 -- -----------------------------------------------------
 -- 9. Table `componente` (Catálogo unificado com padrões)
@@ -188,12 +192,12 @@ INSERT INTO `integracao` (`id_integracao`, `codigo_api`,`jira_email`, `fk_empres
 (2, 'JIRA-API-KEY-MERCADORAPIDO-44123','enzo.martelozzo@sptech.school', 3, 'https://trackcommerce.atlassian.net', 'NOV'),
 (3, 'JIRA-API-KEY-BORACOMPRAR-77211','enzo.martelozzo@sptech.school', 4, 'https://trackcommerce.atlassian.net', 'NOV');
 
-INSERT INTO `instancia` (`id_instancia`, `fk_empresa`, `nome`, `identificador`, `ativo`) VALUES
-(1, 2, 'VM Producao Web', 'ef7050f0-9d76-49ff-ae93-a7b5581ff629', 1),
-(2, 2, 'VM Banco de Dados', 'lojacerta-prod-db-01', 1),
-(3, 3, 'VM Producao Web', 'mercadorapido-prod-web-01', 1),
-(4, 3, 'VM Cache/Redis', 'mercadorapido-prod-cache-01', 1),
-(5, 4, 'VM Producao Web', 'boracomprar-prod-web-01', 1);
+INSERT INTO `instancia` (`id_instancia`, `fk_empresa`, `nome`, `identificador`, `valor_por_established`, `ativo`) VALUES
+(1, 2, 'VM Producao Web', 'ef7050f0-9d76-49ff-ae93-a7b5581ff629', 0.001, 1),
+(2, 2, 'VM Banco de Dados', 'lojacerta-prod-db-01', 0.001, 1),
+(3, 3, 'VM Producao Web', 'mercadorapido-prod-web-01', 0.001, 1),
+(4, 3, 'VM Cache/Redis', 'mercadorapido-prod-cache-01', 0.001, 1),
+(5, 4, 'VM Producao Web', 'boracomprar-prod-web-01', 0.001, 1);
 
 INSERT INTO `componente` (`id_componente`, `nome`, `metrica`, `unidade_medida`, `alerta_moderado_padrao`, `alerta_critico_padrao`) VALUES
 (1, 'CPU', 'Uso de Processador', '%', 70.00, 85.00),
