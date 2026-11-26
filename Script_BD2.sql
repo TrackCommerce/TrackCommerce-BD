@@ -20,8 +20,9 @@ CREATE TABLE `cargo` (
 -- -----------------------------------------------------
 CREATE TABLE `permissao` (
   `id_permissao` INT NOT NULL AUTO_INCREMENT,
-  `nome_permissao` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_permissao`)
+  `nome_permissao` VARCHAR(60) NOT NULL,
+  PRIMARY KEY (`id_permissao`),
+  UNIQUE INDEX `uq_permissao_nome` (`nome_permissao`)
 ) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -34,6 +35,8 @@ CREATE TABLE `cargo_permissao` (
   CONSTRAINT `fk_cp_cargo` FOREIGN KEY (`fk_cargo`) REFERENCES `cargo` (`id_cargo`) ON DELETE CASCADE,
   CONSTRAINT `fk_cp_permissao` FOREIGN KEY (`fk_permissao`) REFERENCES `permissao` (`id_permissao`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
+
+CREATE INDEX `fk_cp_permissao_idx` ON `cargo_permissao` (`fk_permissao` ASC);
 
 -- -----------------------------------------------------
 -- 4. Table `endereco`
@@ -65,6 +68,8 @@ CREATE TABLE `empresa` (
   CONSTRAINT `fk_empresa_endereco` FOREIGN KEY (`fk_endereco`) REFERENCES `endereco` (`id_endereco`) ON DELETE SET NULL
 ) ENGINE = InnoDB;
 
+CREATE INDEX `fk_empresa_endereco_idx` ON `empresa` (`fk_endereco` ASC);
+
 -- -----------------------------------------------------
 -- 6. Table `usuario`
 -- -----------------------------------------------------
@@ -82,6 +87,9 @@ CREATE TABLE `usuario` (
   CONSTRAINT `fk_usuario_empresa` FOREIGN KEY (`fk_empresa`) REFERENCES `empresa` (`id_empresa`) ON DELETE RESTRICT
 ) ENGINE = InnoDB;
 
+CREATE INDEX `fk_usuario_empresa_idx` ON `usuario` (`fk_empresa` ASC);
+CREATE INDEX `fk_usuario_cargo_idx` ON `usuario` (`fk_cargo` ASC);
+
 -- -----------------------------------------------------
 -- 7. Table `integracao` (Antiga `apijira`)
 -- -----------------------------------------------------
@@ -89,9 +97,10 @@ CREATE TABLE `integracao` (
   `id_integracao` INT NOT NULL AUTO_INCREMENT,
   `fk_empresa` INT NOT NULL,
   `codigo_api` VARCHAR(500) NOT NULL,
-  `jira_url` VARCHAR(200) NULL DEFAULT NULL,
+  `jira_url` VARCHAR(255) NULL DEFAULT NULL,
   `jira_email` VARCHAR(200) NULL DEFAULT NULL,
   `jira_project_key` VARCHAR(200) NULL DEFAULT NULL,
+  `slack_webhook` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id_integracao`),
   UNIQUE INDEX `uq_integracao_empresa` (`fk_empresa`),
   CONSTRAINT `fk_integracao_empresa` FOREIGN KEY (`fk_empresa`) REFERENCES `empresa` (`id_empresa`) ON DELETE CASCADE
@@ -126,7 +135,8 @@ CREATE TABLE `componente` (
   `unidade_medida` VARCHAR(15) NOT NULL,
   `alerta_moderado_padrao` DECIMAL(10,2) NOT NULL,
   `alerta_critico_padrao` DECIMAL(10,2) NOT NULL,
-  PRIMARY KEY (`id_componente`)
+  PRIMARY KEY (`id_componente`),
+  UNIQUE INDEX `uq_componente_nome_metrica` (`nome`, `metrica`)
 ) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -145,6 +155,9 @@ CREATE TABLE `instancia_componente` (
   CONSTRAINT `fk_ic_instancia` FOREIGN KEY (`fk_instancia`) REFERENCES `instancia` (`id_instancia`) ON DELETE CASCADE,
   CONSTRAINT `fk_ic_componente` FOREIGN KEY (`fk_componente`) REFERENCES `componente` (`id_componente`) ON DELETE RESTRICT
 ) ENGINE = InnoDB;
+
+CREATE INDEX `fk_ic_instancia_idx` ON `instancia_componente` (`fk_instancia` ASC);
+CREATE INDEX `fk_ic_componente_idx` ON `instancia_componente` (`fk_componente` ASC);
 
 -- =====================================================
 -- INSERÇÕES
@@ -234,7 +247,8 @@ SELECT ic.id_instancia_componente,
        ig.jira_url,
        ig.jira_email,
        ig.codigo_api,
-       ig.jira_project_key
+       ig.jira_project_key,
+       ig.slack_webhook
 FROM instancia_componente ic
 JOIN instancia i       ON i.id_instancia = ic.fk_instancia
 JOIN empresa e         ON e.id_empresa = i.fk_empresa
